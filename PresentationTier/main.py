@@ -1,5 +1,6 @@
-from Python.SanPablo.BussinesTier.product import Product
-from Python.SanPablo.BussinesTier.sales import Sale
+from BussinesTier.product import Product
+from BussinesTier.sales import Sale
+
 # import os
 
 

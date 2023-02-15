@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from datetime import datetime
-from Python.SanPablo.DataTier.database import DataBase
+from DataTier.database import DataBase
 from table2ascii import table2ascii
 
 

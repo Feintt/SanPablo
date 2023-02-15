@@ -1,4 +1,4 @@
-from Python.SanPablo.DataTier.database import DataBase
+from DataTier.database import DataBase
 from dataclasses import dataclass
 
 

@@ -1,9 +1,9 @@
 from dataclasses import dataclass
-from Python.SanPablo.DataTier.database import DataBase
+from DataTier.database import DataBase
 from table2ascii import table2ascii
 from barcode import Code39
 from barcode.writer import ImageWriter
-from Python.SanPablo.BarcodesManagment.barcodes import BarcodeManager
+from BarcodesManagment.barcodes import BarcodeManager
 
 
 @dataclass()
