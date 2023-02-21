@@ -2,7 +2,7 @@ from BussinesTier.product import Product
 from BussinesTier.sales import Sale
 from BussinesTier.payment import Payment
 
-# import os
+import os
 
 
 def display_barcode_image() -> None:
@@ -69,7 +69,6 @@ def main():
         9. Show products info by filtering values
         ''')
         option = int(input('Choose an option: '))
-        # os.system('cls' if os.name == 'nt' else 'clear')
         if option == 1:
             """
             This option shows the products by creating a Product object with trash values, then 
@@ -77,6 +76,7 @@ def main():
             """
             show_products()
         elif option == 2:
+            os.system('cl')
             product = Product('', '', '', 0, 0, 0, '')
             product.create_product()
             product.add_product_to_database()
