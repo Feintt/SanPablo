@@ -36,12 +36,31 @@ class DataBase:
     def return_table_names(self):
         return self.cursor.execute("SELECT name FROM sqlite_master WHERE type='table'").fetchall()
 
+    def fetch_all_from_table(self, table_name):
+        return self.cursor.execute(f'SELECT * FROM {table_name}').fetchall()
+
     def list_columns_of_a_table(self, table_name):
         return self.cursor.execute(f'PRAGMA table_info({table_name})').fetchall()
 
     def change_table_name(self, old_name, new_name):
         self.cursor.execute(f'ALTER TABLE {old_name} RENAME TO {new_name}')
         self.connection.commit()
+
+    def delete_row_from_table(self, table_name, ide):
+        self.cursor.execute(f'DELETE FROM {table_name} WHERE ID = {ide}')
+        self.connection.commit()
+
+    def return_single_value_from_table(self, table_name, column, ide):
+        return self.cursor.execute(f'SELECT {column} FROM {table_name} WHERE ID = {ide}').fetchone()[0]
+
+    def return_values_from_a_column(self, table_name, column):
+        return self.cursor.execute(f'SELECT {column} FROM {table_name}').fetchall()
+
+    def return_id_from_table(self, table_name, column, value):
+        return self.cursor.execute(f'SELECT ID FROM {table_name} WHERE {column} = "{value}"').fetchone()[0]
+
+    def return_row_values_from_table_where(self, table_name, column, value):
+        return self.cursor.execute(f'SELECT * FROM {table_name} WHERE {column} = "{value}"').fetchall()
 
     def __del__(self):
         self.connection.close()

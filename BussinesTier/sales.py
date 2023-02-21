@@ -19,24 +19,28 @@ class Sale:
 
     def create_record(self):
         self.DataBase.create_table_if_not_exists(table_name=f'{self.product_name}',
-                                                 columns='order_number TEXT NULL, date TEXT NULL, time TEXT NULL, '
+                                                 columns='product_sold TEXT NULL, order_number TEXT NULL, '
+                                                         'date TEXT NULL, time TEXT NULL, '
                                                          'amount_sold INT NULL, subtotal REAL NULL, total REAL NULL, '
                                                          'type_of_payment TEXT NULL, was_the_order_billed BOOL NULL')
         self.DataBase.try_to_add_to_table(table_name=f'{self.product_name}',
-                                          columns='order_number, date, time, '
+                                          columns='product_sold, order_number, date, time, '
                                                   'amount_sold, subtotal, total, '
                                                   'type_of_payment, '
                                                   'was_the_order_billed',
-                                          values=f'"{self.product_name[:2]}{self.create_order_number()}", '
+                                          values=f'"{self.product_name}",'
+                                                 f'"{self.product_name[:2]}{self.create_order_number()}", '
                                                  f'"{self.date}", '
-                                                 f'"{self.time}", 'f'{self.amount_sold}, {self.subtotal}, '
-                                                 f'{self.total}, 'f'"{self.type_of_payment}", '
+                                                 f'"{self.time}", '
+                                                 f'{self.amount_sold}, {self.subtotal}, '
+                                                 f'{self.total}, '
+                                                 f'"{self.type_of_payment}", '
                                                  f'{self.was_the_order_billed}')
 
     def show_record(self, product_name):
         records = self.DataBase.cursor.execute(f'SELECT * FROM {product_name}').fetchall()
         output = table2ascii(
-            header=['#', 'Order Number', 'Date', 'Time', 'Amount Sold', 'Subtotal', 'Total', 'Type of Payment',
+            header=['#', 'Product Sold', 'Order Number', 'Date', 'Time', 'Amount Sold', 'Subtotal', 'Total', 'Type of Payment',
                     'Was the order billed?'],
             body=records,
         )
