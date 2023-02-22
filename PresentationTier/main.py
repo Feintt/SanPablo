@@ -1,7 +1,6 @@
 from BussinesTier.product import Product
 from BussinesTier.sales import Sale
 from BussinesTier.payment import Payment
-
 import os
 
 
